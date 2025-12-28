@@ -41,7 +41,6 @@ export function Products() {
     name: "",
     description: "",
     price: 0,
-    stock: 0,
     categoryId: "",
   });
 
@@ -126,7 +125,6 @@ export function Products() {
       name: product.name,
       description: product.description || "",
       price: product.price,
-      stock: product.stock,
       categoryId: product.categoryId,
     });
     setIsOpen(true);
@@ -155,7 +153,6 @@ export function Products() {
       name: "",
       description: "",
       price: 0,
-      stock: 0,
       categoryId: "",
     });
     setIsEditing(false);
@@ -236,7 +233,7 @@ export function Products() {
         </div>
       ) : (
         /* Tabla */
-        <Table className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+        <Table className="bg-white dark:bg-zinc-900">
           <TableHead>
             <TableRow>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
@@ -354,41 +351,20 @@ export function Products() {
               />
             </Field>
 
-            <div className="grid grid-cols-2 gap-4">
-              <Field>
-                <Label className="text-zinc-900 dark:text-zinc-100">
-                  Precio (pesos)
-                </Label>
-                <Input
-                  type="number"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleInputChange}
-                  placeholder="0"
-                  min="0"
-                  required
-                  disabled={loading}
-                  className="text-zinc-900 dark:text-zinc-100"
-                />
-              </Field>
-
-              <Field>
-                <Label className="text-zinc-900 dark:text-zinc-100">
-                  Stock inicial
-                </Label>
-                <Input
-                  type="number"
-                  name="stock"
-                  value={formData.stock}
-                  onChange={handleInputChange}
-                  placeholder="0"
-                  min="0"
-                  required
-                  disabled={loading}
-                  className="text-zinc-900 dark:text-zinc-100"
-                />
-              </Field>
-            </div>
+            <Field>
+              <Label className="text-zinc-900 dark:text-zinc-100">Precio</Label>
+              <Input
+                type="number"
+                name="price"
+                value={formData.price}
+                onChange={handleInputChange}
+                placeholder="0"
+                min="0"
+                required
+                disabled={loading}
+                className="text-zinc-900 dark:text-zinc-100"
+              />
+            </Field>
 
             <Field>
               <Label className="text-zinc-900 dark:text-zinc-100">

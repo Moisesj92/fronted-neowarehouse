@@ -43,7 +43,7 @@ export function Layout() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+    <div className="flex h-screen overflow-hidden dark:bg-zinc-900">
       <div className="w-64 shrink p-4">
         <Sidebar className="h-full rounded-2xl border border-zinc-300 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
           <SidebarHeader>

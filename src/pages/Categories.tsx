@@ -165,7 +165,7 @@ export function Categories() {
         </div>
       ) : (
         /* Tabla */
-        <Table className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+        <Table className="bg-white dark:bg-zinc-900">
           <TableHead>
             <TableRow>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
