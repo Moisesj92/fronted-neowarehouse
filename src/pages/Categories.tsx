@@ -169,9 +169,6 @@ export function Categories() {
           <TableHead>
             <TableRow>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
-                ID
-              </TableHeader>
-              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Nombre
               </TableHeader>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
@@ -194,9 +191,6 @@ export function Categories() {
             ) : (
               categories.map((category) => (
                 <TableRow key={category.id}>
-                  <TableCell className="text-zinc-900 dark:text-zinc-100">
-                    {category.id}
-                  </TableCell>
                   <TableCell className="font-medium text-zinc-900 dark:text-zinc-100">
                     {category.name}
                   </TableCell>
