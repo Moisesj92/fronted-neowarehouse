@@ -217,9 +217,6 @@ export function Inventory() {
                 Producto
               </TableHeader>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
-                SKU
-              </TableHeader>
-              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Tipo
               </TableHeader>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100 text-right">
@@ -247,9 +244,6 @@ export function Inventory() {
                 <TableRow key={movement.id}>
                   <TableCell className="font-medium text-zinc-900 dark:text-zinc-100">
                     {movement.product?.name || "N/A"}
-                  </TableCell>
-                  <TableCell className="text-zinc-700 dark:text-zinc-300">
-                    {movement.product?.sku || "N/A"}
                   </TableCell>
                   <TableCell>
                     <span

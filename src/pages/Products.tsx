@@ -18,7 +18,6 @@ import {
   Field,
   Label,
   Select,
-  Textarea,
 } from "../components/ui";
 import { PlusIcon, PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { productsApi } from "../api/products.api";
@@ -39,7 +38,6 @@ export function Products() {
   // Estado del formulario
   const [formData, setFormData] = useState<CreateProductDto>({
     name: "",
-    description: "",
     price: 0,
     categoryId: "",
   });
@@ -123,7 +121,6 @@ export function Products() {
     setEditingId(product.id);
     setFormData({
       name: product.name,
-      description: product.description || "",
       price: product.price,
       categoryId: product.categoryId,
     });
@@ -151,7 +148,6 @@ export function Products() {
   const resetForm = () => {
     setFormData({
       name: "",
-      description: "",
       price: 0,
       categoryId: "",
     });
@@ -240,9 +236,6 @@ export function Products() {
                 Nombre
               </TableHeader>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
-                Descripción
-              </TableHeader>
-              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Precio
               </TableHeader>
               <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
@@ -270,9 +263,6 @@ export function Products() {
                 <TableRow key={product.id}>
                   <TableCell className="font-medium text-zinc-900 dark:text-zinc-100">
                     {product.name}
-                  </TableCell>
-                  <TableCell className="text-zinc-700 dark:text-zinc-300">
-                    {product.description || "-"}
                   </TableCell>
                   <TableCell className="text-zinc-900 dark:text-zinc-100">
                     ${product.price.toLocaleString()}
@@ -333,21 +323,6 @@ export function Products() {
                 required
                 disabled={loading}
                 className="text-zinc-900 dark:text-zinc-100"
-              />
-            </Field>
-
-            <Field>
-              <Label className="text-zinc-900 dark:text-zinc-100">
-                Descripción (opcional)
-              </Label>
-              <Textarea
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                placeholder="Descripción detallada del producto..."
-                disabled={loading}
-                className="text-zinc-900 dark:text-zinc-100"
-                rows={3}
               />
             </Field>
 
