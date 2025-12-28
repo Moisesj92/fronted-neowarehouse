@@ -136,10 +136,10 @@ export function Categories() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <Heading className="text-3xl font-bold text-zinc-900">
+          <Heading className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
             Categorías
           </Heading>
-          <Text className="text-zinc-600 mt-1">
+          <Text className="text-zinc-600 dark:text-zinc-400 mt-1">
             Gestiona las categorías de productos
           </Text>
         </div>
@@ -151,27 +151,33 @@ export function Categories() {
 
       {/* Mensajes de error */}
       {error && (
-        <div className="rounded-lg bg-red-50 p-4 text-red-800">{error}</div>
+        <div className="rounded-lg bg-red-50 dark:bg-red-900/20 p-4 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800">
+          {error}
+        </div>
       )}
 
       {/* Loading state */}
       {loading && categories.length === 0 ? (
         <div className="text-center py-8">
-          <Text className="text-zinc-600">Cargando categorías...</Text>
+          <Text className="text-zinc-600 dark:text-zinc-400">
+            Cargando categorías...
+          </Text>
         </div>
       ) : (
         /* Tabla */
-        <Table>
+        <Table className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
           <TableHead>
             <TableRow>
-              <TableHeader className="font-bold text-zinc-900">ID</TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
+                ID
+              </TableHeader>
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Nombre
               </TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Fecha de Creación
               </TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Acciones
               </TableHeader>
             </TableRow>
@@ -180,7 +186,7 @@ export function Categories() {
             {categories.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={4} className="text-center py-8">
-                  <Text className="text-zinc-600">
+                  <Text className="text-zinc-600 dark:text-zinc-400">
                     No hay categorías registradas
                   </Text>
                 </TableCell>
@@ -188,11 +194,13 @@ export function Categories() {
             ) : (
               categories.map((category) => (
                 <TableRow key={category.id}>
-                  <TableCell className="text-zinc-900">{category.id}</TableCell>
-                  <TableCell className="font-medium text-zinc-900">
+                  <TableCell className="text-zinc-900 dark:text-zinc-100">
+                    {category.id}
+                  </TableCell>
+                  <TableCell className="font-medium text-zinc-900 dark:text-zinc-100">
                     {category.name}
                   </TableCell>
-                  <TableCell className="text-zinc-700">
+                  <TableCell className="text-zinc-700 dark:text-zinc-300">
                     {new Date(category.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell>
@@ -222,10 +230,10 @@ export function Categories() {
 
       {/* Modal para crear/editar categoría */}
       <Dialog open={isOpen} onClose={handleCloseModal}>
-        <DialogTitle className="text-zinc-900">
+        <DialogTitle className="text-zinc-900 dark:text-zinc-100">
           {isEditing ? "Editar Categoría" : "Nueva Categoría"}
         </DialogTitle>
-        <DialogDescription className="text-zinc-600">
+        <DialogDescription className="text-zinc-600 dark:text-zinc-400">
           {isEditing
             ? "Modifica el nombre de la categoría"
             : "Crea una nueva categoría para organizar tus productos"}
@@ -233,7 +241,9 @@ export function Categories() {
         <DialogBody>
           <form onSubmit={handleSubmit} id="category-form">
             <Field>
-              <Label className="text-zinc-900">Nombre de la categoría</Label>
+              <Label className="text-zinc-900 dark:text-zinc-100">
+                Nombre de la categoría
+              </Label>
               <Input
                 name="name"
                 value={categoryName}
@@ -241,7 +251,7 @@ export function Categories() {
                 placeholder="Ej: Electrónica, Ropa, Alimentos..."
                 required
                 disabled={loading}
-                className="text-zinc-900"
+                className="text-zinc-900 dark:text-zinc-100"
               />
             </Field>
           </form>

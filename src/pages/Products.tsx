@@ -45,17 +45,11 @@ export function Products() {
     categoryId: "",
   });
 
-  // Cargar productos al montar el componente
+  // Cargar productos y categorías al montar el componente
   useEffect(() => {
     loadProducts();
+    loadCategories();
   }, []);
-
-  // Cargar categorías cuando se abre el modal
-  useEffect(() => {
-    if (isOpen) {
-      loadCategories();
-    }
-  }, [isOpen]);
 
   const loadProducts = async () => {
     try {
@@ -213,10 +207,10 @@ export function Products() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <Heading className="text-3xl font-bold text-zinc-900">
+          <Heading className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
             Productos
           </Heading>
-          <Text className="text-zinc-600 mt-1">
+          <Text className="text-zinc-600 dark:text-zinc-400 mt-1">
             Gestiona el catálogo de productos
           </Text>
         </div>
@@ -228,35 +222,39 @@ export function Products() {
 
       {/* Mensajes de error */}
       {error && (
-        <div className="rounded-lg bg-red-50 p-4 text-red-800">{error}</div>
+        <div className="rounded-lg bg-red-50 dark:bg-red-900/20 p-4 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800">
+          {error}
+        </div>
       )}
 
       {/* Loading state */}
       {loading && products.length === 0 ? (
         <div className="text-center py-8">
-          <Text className="text-zinc-600">Cargando productos...</Text>
+          <Text className="text-zinc-600 dark:text-zinc-400">
+            Cargando productos...
+          </Text>
         </div>
       ) : (
         /* Tabla */
-        <Table>
+        <Table className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
           <TableHead>
             <TableRow>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Nombre
               </TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Descripción
               </TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Precio
               </TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Stock
               </TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Categoría
               </TableHeader>
-              <TableHeader className="font-bold text-zinc-900">
+              <TableHeader className="font-bold text-zinc-900 dark:text-zinc-100">
                 Acciones
               </TableHeader>
             </TableRow>
@@ -265,7 +263,7 @@ export function Products() {
             {products.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={6} className="text-center py-8">
-                  <Text className="text-zinc-600">
+                  <Text className="text-zinc-600 dark:text-zinc-400">
                     No hay productos registrados
                   </Text>
                 </TableCell>
@@ -273,19 +271,19 @@ export function Products() {
             ) : (
               products.map((product) => (
                 <TableRow key={product.id}>
-                  <TableCell className="font-medium text-zinc-900">
+                  <TableCell className="font-medium text-zinc-900 dark:text-zinc-100">
                     {product.name}
                   </TableCell>
-                  <TableCell className="text-zinc-700">
+                  <TableCell className="text-zinc-700 dark:text-zinc-300">
                     {product.description || "-"}
                   </TableCell>
-                  <TableCell className="text-zinc-900">
+                  <TableCell className="text-zinc-900 dark:text-zinc-100">
                     ${product.price.toLocaleString()}
                   </TableCell>
-                  <TableCell className="text-zinc-900">
+                  <TableCell className="text-zinc-900 dark:text-zinc-100">
                     {product.stock}
                   </TableCell>
-                  <TableCell className="text-zinc-700">
+                  <TableCell className="text-zinc-700 dark:text-zinc-300">
                     {product.categoryName ||
                       getCategoryName(product.categoryId)}
                   </TableCell>
@@ -316,10 +314,10 @@ export function Products() {
 
       {/* Modal para crear/editar producto */}
       <Dialog open={isOpen} onClose={handleCloseModal}>
-        <DialogTitle className="text-zinc-900">
+        <DialogTitle className="text-zinc-900 dark:text-zinc-100">
           {isEditing ? "Editar Producto" : "Nuevo Producto"}
         </DialogTitle>
-        <DialogDescription className="text-zinc-600">
+        <DialogDescription className="text-zinc-600 dark:text-zinc-400">
           {isEditing
             ? "Modifica la información del producto"
             : "Completa los datos para agregar un nuevo producto"}
@@ -327,7 +325,9 @@ export function Products() {
         <DialogBody>
           <form onSubmit={handleSubmit} id="product-form" className="space-y-4">
             <Field>
-              <Label className="text-zinc-900">Nombre del producto</Label>
+              <Label className="text-zinc-900 dark:text-zinc-100">
+                Nombre del producto
+              </Label>
               <Input
                 name="name"
                 value={formData.name}
@@ -335,26 +335,30 @@ export function Products() {
                 placeholder="Ej: Laptop Dell XPS 13"
                 required
                 disabled={loading}
-                className="text-zinc-900"
+                className="text-zinc-900 dark:text-zinc-100"
               />
             </Field>
 
             <Field>
-              <Label className="text-zinc-900">Descripción (opcional)</Label>
+              <Label className="text-zinc-900 dark:text-zinc-100">
+                Descripción (opcional)
+              </Label>
               <Textarea
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
                 placeholder="Descripción detallada del producto..."
                 disabled={loading}
-                className="text-zinc-900"
+                className="text-zinc-900 dark:text-zinc-100"
                 rows={3}
               />
             </Field>
 
             <div className="grid grid-cols-2 gap-4">
               <Field>
-                <Label className="text-zinc-900">Precio (pesos)</Label>
+                <Label className="text-zinc-900 dark:text-zinc-100">
+                  Precio (pesos)
+                </Label>
                 <Input
                   type="number"
                   name="price"
@@ -364,12 +368,14 @@ export function Products() {
                   min="0"
                   required
                   disabled={loading}
-                  className="text-zinc-900"
+                  className="text-zinc-900 dark:text-zinc-100"
                 />
               </Field>
 
               <Field>
-                <Label className="text-zinc-900">Stock inicial</Label>
+                <Label className="text-zinc-900 dark:text-zinc-100">
+                  Stock inicial
+                </Label>
                 <Input
                   type="number"
                   name="stock"
@@ -379,15 +385,19 @@ export function Products() {
                   min="0"
                   required
                   disabled={loading}
-                  className="text-zinc-900"
+                  className="text-zinc-900 dark:text-zinc-100"
                 />
               </Field>
             </div>
 
             <Field>
-              <Label className="text-zinc-900">Categoría</Label>
+              <Label className="text-zinc-900 dark:text-zinc-100">
+                Categoría
+              </Label>
               {loadingCategories ? (
-                <Text className="text-zinc-600">Cargando categorías...</Text>
+                <Text className="text-zinc-600 dark:text-zinc-400">
+                  Cargando categorías...
+                </Text>
               ) : (
                 <Select
                   name="categoryId"
@@ -395,7 +405,7 @@ export function Products() {
                   onChange={handleInputChange}
                   required
                   disabled={loading || categories.length === 0}
-                  className="text-zinc-900"
+                  className="text-zinc-900 dark:text-zinc-100"
                 >
                   <option value="">Selecciona una categoría</option>
                   {categories.map((category) => (
@@ -406,7 +416,7 @@ export function Products() {
                 </Select>
               )}
               {categories.length === 0 && !loadingCategories && (
-                <Text className="text-red-600 text-sm mt-1">
+                <Text className="text-red-600 dark:text-red-400 text-sm mt-1">
                   No hay categorías disponibles. Crea una categoría primero.
                 </Text>
               )}
