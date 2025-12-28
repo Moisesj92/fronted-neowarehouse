@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "pnpm dev"
