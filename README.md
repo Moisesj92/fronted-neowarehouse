@@ -36,6 +36,15 @@ NeoWarehouse es una aplicación web moderna para la gestión de inventarios que 
 
 ### Usando Docker Compose (Recomendado)
 
+1. Clona el repositorio:
+
+```bash
+git clone <repository-url>
+cd frontend-neowarehouse
+```
+
+2. Construye y levanta los contenedores:
+
 ```bash
 docker compose up
 ```
