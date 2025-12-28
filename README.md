@@ -32,55 +32,12 @@ NeoWarehouse es una aplicación web moderna para la gestión de inventarios que 
 
 ### Pasos de instalación
 
-1. Clona el repositorio:
-
-```bash
-git clone <repository-url>
-cd frontend-neowarehouse
-```
-
-2. Instala las dependencias:
-
-```bash
-pnpm install
-```
-
-3. Configura las variables de entorno:
-
-```bash
-cp .env.example .env
-```
-
-Edita el archivo `.env` con la URL de tu API:
-
-```env
-VITE_API_URL=http://localhost:3000/api
-```
-
-4. Inicia el servidor de desarrollo:
-
-```bash
-pnpm dev
-```
-
-La aplicación estará disponible en `http://localhost:3001`
-
 ## 🐳 Docker
 
 ### Usando Docker Compose (Recomendado)
 
 ```bash
 docker compose up
-```
-
-### Usando Docker directamente
-
-```bash
-# Build
-docker build -t neowarehouse-frontend .
-
-# Run
-docker run -p 3001:3001 neowarehouse-frontend
 ```
 
 ## 📁 Estructura del Proyecto
