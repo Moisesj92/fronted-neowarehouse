@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import { useState, useEffect } from "react";
 import {
   Sidebar,
@@ -18,6 +18,7 @@ import {
 } from "@heroicons/react/20/solid";
 
 export function Layout() {
+  const location = useLocation();
   const [isDark, setIsDark] = useState(() => {
     // Leer preferencia guardada o usar la del sistema
     const saved = localStorage.getItem("theme");
@@ -69,6 +70,7 @@ export function Layout() {
             <SidebarSection>
               <SidebarItem
                 href="/"
+                current={location.pathname === "/"}
                 className="rounded-2xl text-zinc-900 hover:bg-zinc-200/70 hover:text-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-700/70 dark:hover:text-white"
               >
                 <HomeIcon className="text-zinc-700 dark:text-zinc-300" />
@@ -79,6 +81,7 @@ export function Layout() {
 
               <SidebarItem
                 href="/products"
+                current={location.pathname === "/products"}
                 className="rounded-2xl text-zinc-900 hover:bg-zinc-200/70 hover:text-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-700/70 dark:hover:text-white"
               >
                 <CubeIcon className="text-zinc-700 dark:text-zinc-300" />
@@ -89,6 +92,7 @@ export function Layout() {
 
               <SidebarItem
                 href="/categories"
+                current={location.pathname === "/categories"}
                 className="rounded-2xl text-zinc-900 hover:bg-zinc-200/70 hover:text-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-700/70 dark:hover:text-white"
               >
                 <SwatchIcon className="text-zinc-700 dark:text-zinc-300" />
@@ -99,6 +103,7 @@ export function Layout() {
 
               <SidebarItem
                 href="/inventory"
+                current={location.pathname === "/inventory"}
                 className="rounded-2xl text-zinc-900 hover:bg-zinc-200/70 hover:text-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-700/70 dark:hover:text-white"
               >
                 <ClipboardDocumentListIcon className="text-zinc-700 dark:text-zinc-300" />
