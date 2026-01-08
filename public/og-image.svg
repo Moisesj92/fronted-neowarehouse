@@ -96,9 +96,4 @@
     <rect x="148" y="244" width="220" height="12" rx="2" fill="#52525b"/>
     <rect x="148" y="268" width="160" height="12" rx="2" fill="#52525b"/>
   </g>
-  
-  <!-- NeoLab branding -->
-  <text x="100" y="570" font-family="system-ui, sans-serif" font-size="16" font-weight="500" fill="#52525b">
-    by NeoLab
-  </text>
 </svg>
