@@ -134,16 +134,20 @@ export function Categories() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <Heading className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+          <Heading className="text-2xl font-bold text-zinc-900 md:text-3xl dark:text-zinc-100">
             Categorías
           </Heading>
           <Text className="text-zinc-600 dark:text-zinc-400 mt-1">
             Gestiona las categorías de productos
           </Text>
         </div>
-        <Button onClick={handleOpenCreate} disabled={loading}>
+        <Button
+          onClick={handleOpenCreate}
+          disabled={loading}
+          className="w-full md:w-auto"
+        >
           <PlusIcon />
           Nueva Categoría
         </Button>
